@@ -12,7 +12,7 @@ import { auth } from "./firebase/FirebaseUtils";
 import { createUserProfileDocument } from "./firebase/FirebaseUtils";
 
 function App() {
-  const [currentUser, setCurrentUser] = useState(null);
+  const [currentUser, setCurrentUser] = useState(null, (data) => console.log(data));
 
   useEffect(() => {
     // listen for auth state changes
