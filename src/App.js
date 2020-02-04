@@ -9,19 +9,31 @@ import Header from "./components/header/Header";
 import signInSignUp from "./pages/sign-in-sign-up/sign-in-sign-up";
 // firebase
 import { auth } from "./firebase/FirebaseUtils";
+import { createUserProfileDocument } from "./firebase/FirebaseUtils";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
 
   useEffect(() => {
     // listen for auth state changes
-    const unsubscribe = auth.onAuthStateChanged(user => {
-      setCurrentUser(user);
-      console.log(currentUser);
+    const unsubscribe = auth.onAuthStateChanged(async userAuth => {
+      if (userAuth) {
+        const userRef = await createUserProfileDocument(userAuth);
+        userRef.onSnapshot(snapShot => {
+          setCurrentUser(
+            {
+              id: snapShot.id,
+              ...snapShot.data()
+            },
+            userAuth
+          );
+        });
+      } else {
+        setCurrentUser(userAuth);
+      }
     });
-    // unsubscribe to the listener when unmounting
     return () => unsubscribe();
-  });
+  }, []);
 
   return (
     <Router>
