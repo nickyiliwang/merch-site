@@ -1,1 +1,1 @@
-Following Complete React Developer in 2020 (w Redux, Hooks, GraphQL) Course, making a merchandise website
+Making a merchandise website with React Hooks, Firebase, Stripe and React-router-dom
