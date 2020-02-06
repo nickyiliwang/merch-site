@@ -12,7 +12,7 @@ import { auth } from "./firebase/FirebaseUtils";
 import { createUserProfileDocument } from "./firebase/FirebaseUtils";
 
 function App() {
-  const [currentUser, setCurrentUser] = useState(null, (data) => console.log(data));
+  const [currentUser, setCurrentUser] = useState(null);
 
   useEffect(() => {
     // listen for auth state changes
@@ -24,8 +24,7 @@ function App() {
             {
               id: snapShot.id,
               ...snapShot.data()
-            },
-            userAuth
+            }
           );
         });
       } else {
