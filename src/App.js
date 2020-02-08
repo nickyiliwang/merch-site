@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import "./App.css";
 import { BrowserRouter as Router } from "react-router-dom";
 import { Switch, Route } from "react-router-dom";
@@ -10,9 +10,11 @@ import signInSignUp from "./pages/sign-in-sign-up/sign-in-sign-up";
 // firebase
 import { auth } from "./firebase/FirebaseUtils";
 import { createUserProfileDocument } from "./firebase/FirebaseUtils";
+// redux
+import { connect } from "react-redux";
+import { setCurrentUser } from "./Redux/actions/userActions";
 
-function App() {
-  const [currentUser, setCurrentUser] = useState(null);
+function App({ setCurrentUser }) {
 
   useEffect(() => {
     // listen for auth state changes
@@ -20,12 +22,10 @@ function App() {
       if (userAuth) {
         const userRef = await createUserProfileDocument(userAuth);
         userRef.onSnapshot(snapShot => {
-          setCurrentUser(
-            {
-              id: snapShot.id,
-              ...snapShot.data()
-            }
-          );
+          setCurrentUser({
+            id: snapShot.id,
+            ...snapShot.data()
+          });
         });
       } else {
         setCurrentUser(userAuth);
@@ -36,7 +36,7 @@ function App() {
 
   return (
     <Router>
-      <Header currentUser={currentUser} />
+      <Header />
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route path="/shop" component={ShopPage} />
@@ -46,4 +46,8 @@ function App() {
   );
 }
 
-export default App;
+const mapDispatchToProps = dispatch => ({
+  setCurrentUser: user => dispatch(setCurrentUser(user))
+});
+
+export default connect(null, mapDispatchToProps)(App);
