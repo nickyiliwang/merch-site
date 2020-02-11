@@ -1,4 +1,7 @@
 import React from "react";
+// components
+import CartIcon from "../cart-icon/CartIcon";
+import CartDropdown from "../cart-dropdown/CartDropdown";
 // router
 import { Link } from "react-router-dom";
 // logo
@@ -31,12 +34,14 @@ const Header = ({ currentUser }) => (
           Sign In
         </Link>
       )}
+      <CartIcon />
     </div>
+    <CartDropdown />
   </div>
 );
 
-const mapStateToProps = (state) => ({
-  currentUser: state.user.currentUser  
-})
+const mapStateToProps = state => ({
+  currentUser: state.user.currentUser
+});
 
 export default connect(mapStateToProps)(Header);
