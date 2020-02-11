@@ -31,7 +31,7 @@ function App({ setCurrentUser, currentUser }) {
       }
     });
     return () => unsubscribe();
-  });
+  },[setCurrentUser]);
 
   return (
     <Router>
