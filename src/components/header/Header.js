@@ -41,7 +41,7 @@ const Header = ({ currentUser, hidden }) => (
 );
 
 // same as state.user.currentUser, and state.ui.hidden
-const mapStateToProps = ({ user: { currentUser }, ui: { hidden } }) => ({
+const mapStateToProps = ({ user: { currentUser }, cart: { hidden } }) => ({
   currentUser,
   hidden
 });
