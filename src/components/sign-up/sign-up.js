@@ -33,7 +33,6 @@ const Signup = () => {
         email,
         password
       );
-      console.log(user, displayName);
       // pass the user in and create it with the display name destructured like {displayName: displayName}, so we can use it in a spread
       await createUserProfileDocument(user, { displayName });
 
