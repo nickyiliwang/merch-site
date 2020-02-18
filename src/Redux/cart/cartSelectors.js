@@ -10,7 +10,6 @@ export const selectCartItems = createSelector(
 );
 
 // Was in CartIcons
-
 export const selectCartItemsCount = createSelector(
   [selectCartItems],
   cartItems =>
@@ -19,4 +18,9 @@ export const selectCartItemsCount = createSelector(
         accumulatedQuantity + cartItem.quantity,
       0
     )
+);
+
+export const selectCartHidden = createSelector(
+  [selectCart],
+  cart => cart.hidden
 );
