@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
+import "./sign-up.scss";
 
+// components
 import FormInput from "../form-input/FormInput";
 import CustomButton from "../custom-button/CustomButton";
-
+// firebase
 import { auth, createUserProfileDocument } from "../../firebase/FirebaseUtils";
-
-import "./sign-up.scss";
 
 const Signup = () => {
   const [signupCredentials, setSignupCredentials] = useState({

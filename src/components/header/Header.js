@@ -1,4 +1,5 @@
 import React from "react";
+import "./header.scss";
 // components
 import CartIcon from "../cart-icon/CartIcon";
 import CartDropdown from "../cart-dropdown/CartDropdown";
@@ -14,8 +15,6 @@ import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { selectCartHidden } from "../../Redux/cart/cartSelectors";
 import { selectCurrentUser } from "../../Redux/user/userSelector";
-// css
-import "./Header.scss";
 
 const Header = ({ currentUser, hidden }) => (
   <div className="header">

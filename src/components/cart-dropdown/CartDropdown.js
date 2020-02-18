@@ -1,7 +1,8 @@
 import React from "react";
+import "./cart-dropdown.scss";
+// components
 import CustomButton from "../custom-button/CustomButton";
 import CartItem from "../cart-item/CartItem";
-import "./CartDropdown.scss";
 // redux
 import { connect } from "react-redux";
 // reselect
