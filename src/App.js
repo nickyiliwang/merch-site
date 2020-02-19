@@ -2,16 +2,18 @@ import React, { useEffect } from "react";
 import "./App.css";
 import { BrowserRouter as Router } from "react-router-dom";
 import { Switch, Route, Redirect } from "react-router-dom";
-// components
+// pages/components
+import Header from "./components/header/Header";
 import HomePage from "./pages/homepage/HomePage";
 import ShopPage from "./pages/shop/shop";
-import Header from "./components/header/Header";
 import SignInSignUp from "./pages/sign-in-sign-up/sign-in-sign-up";
+import CheckoutPage from "./pages/checkout/Checkout";
 // firebase
 import { auth } from "./firebase/FirebaseUtils";
 import { createUserProfileDocument } from "./firebase/FirebaseUtils";
 // redux
 import { connect } from "react-redux";
+import { setCurrentUser } from "./Redux/user/userActions";
 // reselect
 import { createStructuredSelector } from "reselect";
 import { selectCurrentUser } from "./Redux/user/userSelector";
@@ -41,6 +43,7 @@ function App({ setCurrentUser, currentUser }) {
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route path="/shop" component={ShopPage} />
+        <Route exact path="/checkout" component={CheckoutPage} />
         {/* <Route exact path="/signin" component={signInSignUp} /> */}
         {/* render instead of component because we want to ternary */}
         <Route
