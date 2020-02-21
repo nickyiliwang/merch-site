@@ -2,10 +2,11 @@ import { combineReducers } from "redux";
 // persist
 import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage"; //localStorage
-
+// reducers
 import userReducer from "./user/userReducer";
 import cartReducer from "./cart/cartReducer";
 import directoryReducer from "./directory/directoryReducer";
+import shopReducer from "./shop/shopReducer";
 
 const persistConfig = {
   key: "root",
@@ -16,7 +17,8 @@ const persistConfig = {
 const rootReducer = combineReducers({
   user: userReducer,
   cart: cartReducer,
-  directory: directoryReducer
+  directory: directoryReducer,
+  shop: shopReducer
 });
 
 // now its persistent because the fn returns it with the ability
