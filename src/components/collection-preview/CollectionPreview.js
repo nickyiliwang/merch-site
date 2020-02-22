@@ -3,7 +3,7 @@ import "./collection-preview.scss";
 // components
 import CollectionItem from "../collection-item/CollectionItem";
 
-export default function CollectionPreview({ title, items }) {
+export const CollectionPreview = ({ title, items }) => {
   return (
     <div className="collection-preview">
       <h2 className="title">{title.toUpperCase()}</h2>
@@ -16,4 +16,4 @@ export default function CollectionPreview({ title, items }) {
       </div>
     </div>
   );
-}
+};
