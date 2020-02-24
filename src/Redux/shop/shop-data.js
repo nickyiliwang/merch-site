@@ -1,5 +1,22 @@
-export const SHOP_DATA = [
-  {
+// the shop data used to be an array of object, but then we need to use the find method and loop through from beginning to end, which is suboptimal.
+
+// match.params.collectionID will be used to find the actual indices of collection data
+// const COLLECTION_ID_MAP = {
+//   hats: 1,
+//   sneakers: 2,
+//   jackets: 3,
+//   womens: 4,
+//   mens: 5
+// };
+
+// collections.find(
+//   collection => collection.id === COLLECTION_ID_MAP[collectionUrlParam]
+// )
+
+// now if we change the way we structure our data, and just have a object. we can just use keys to find data.
+
+export const SHOP_DATA = {
+  hats: {
     id: 1,
     title: "Hats",
     routeName: "hats",
@@ -60,7 +77,7 @@ export const SHOP_DATA = [
       }
     ]
   },
-  {
+  sneakers: {
     id: 2,
     title: "Sneakers",
     routeName: "sneakers",
@@ -115,7 +132,7 @@ export const SHOP_DATA = [
       }
     ]
   },
-  {
+  jackets: {
     id: 3,
     title: "Jackets",
     routeName: "jackets",
@@ -152,7 +169,7 @@ export const SHOP_DATA = [
       }
     ]
   },
-  {
+  womens: {
     id: 4,
     title: "Womens",
     routeName: "womens",
@@ -201,7 +218,7 @@ export const SHOP_DATA = [
       }
     ]
   },
-  {
+  mens: {
     id: 5,
     title: "Mens",
     routeName: "mens",
@@ -244,4 +261,4 @@ export const SHOP_DATA = [
       }
     ]
   }
-];
+};
