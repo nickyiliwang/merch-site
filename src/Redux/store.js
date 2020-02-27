@@ -5,7 +5,11 @@ import logger from "redux-logger";
 // redux persist
 import { persistStore } from "redux-persist";
 
-const middleware = [logger]; // doing this applyMiddleware can take however many things.
+const middleware = []; // doing this applyMiddleware can take however many things.
+
+if (process.env.NODE_ENV === "development") {
+  middleware.push(logger);
+}
 
 // exporting the store for persist to wrap it
 export const store = createStore(rootReducer, applyMiddleware(...middleware));
