@@ -10,22 +10,10 @@ import { selectDirectorySections } from "../../Redux/directory/directorySelector
 
 const Directory = ({ sections }) => {
   return (
-    <div>
-      <div className="directory-menu">
-        {sections.map(({ id, ...otherSectionProps }) => {
-          return (
-            <MenuItem key={id} {...otherSectionProps} />
-            // spreading these
-            // <MenuItem
-            //   key={id}
-            //   title={title}
-            //   imageUrl={imageUrl}
-            //   size={size}
-            //   linkUrl={linkUrl}
-            // />
-          );
-        })}
-      </div>
+    <div className="directory-menu">
+      {sections.map(({ id, ...otherSectionProps }) => (
+        <MenuItem key={id} {...otherSectionProps} />
+      ))}
     </div>
   );
 };
