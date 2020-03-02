@@ -44,15 +44,6 @@ const Header = ({ currentUser, hidden }) => (
   </div>
 );
 
-// same as state.user.currentUser, before reselect
-// const mapStateToProps = ({ user: { currentUser }, cart: { hidden } })
-
-// before createStructuredSelector
-// const mapStateToProps = state => ({
-//   currentUser: selectCurrentUser(state),
-//   hidden: selectCartHidden(state)
-// });
-
 // createStructuredSelector
 const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser,
