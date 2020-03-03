@@ -17,11 +17,6 @@ export const LogoStyles = styled(Link)`
   padding: 25px;
 `;
 
-export const OptionStylesCss = css`
-  padding: 10px 15px;
-  cursor: pointer;
-`;
-
 export const OptionsStyles = styled.div`
   width: 50%;
   height: 100%;
@@ -30,10 +25,17 @@ export const OptionsStyles = styled.div`
   justify-content: flex-end;
 `;
 
-export const OptionLinkStyles = styled(Link)`
-  ${OptionsStyles}
+const OptionStyles = css`
+  padding: 10px 15px;
+  cursor: pointer;
 `;
 
-export const OptionDiv = styled.div`
-  ${OptionStylesCss}
+// we needed option Link styles and option div styles, basically reusing our css code in 2 different element
+
+export const OptionLinkStyles = styled(Link)`
+  ${OptionStyles}
+`;
+
+export const OptionDivStyles = styled.div`
+  ${OptionStyles}
 `;
