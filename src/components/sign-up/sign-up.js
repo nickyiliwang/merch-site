@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./sign-up.scss";
 
 // components
@@ -15,20 +15,17 @@ const Signup = () => {
     confirmPassword: ""
   });
 
-  useEffect(() => {
-    // console.log(signupCredentials);
-  }, [signupCredentials]);
-
   const { displayName, email, password, confirmPassword } = signupCredentials;
 
   const handleSubmit = async e => {
     e.preventDefault();
     if (password !== confirmPassword) {
-      console.log("passwords don't match");
+      console.error("passwords don't match");
       return;
     }
 
     try {
+      // this destructuring get the user from our Promise object
       const { user } = await auth.createUserWithEmailAndPassword(
         email,
         password

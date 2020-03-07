@@ -1,3 +1,23 @@
+// userEffect for Auth with firebase
+useEffect(() => {
+  // listen for auth state changes
+  // unsubscribe function, invoke the auth state change method that calls a async function that awaits 
+  const unsubscribe = auth.onAuthStateChanged(async userAuth => {
+    if (userAuth) {
+      const userRef = await createUserProfileDocument(userAuth);
+      userRef.onSnapshot(snapShot => {
+        setCurrentUser({
+          id: snapShot.id,
+          ...snapShot.data()
+        });
+      });
+    } else {
+      setCurrentUser(userAuth);
+    }
+  });
+  return () => unsubscribe();
+}, [setCurrentUser]);
+
 // reselect notes from Header.js
 
 // same as state.user.currentUser, before reselect
@@ -98,3 +118,4 @@ const CustomButton = ({
 );
 
 ///////////////////////////////////////////////
+// Asynchronous Redux
