@@ -9,16 +9,20 @@ import ShopPage from "./pages/shop/shop";
 import SignInSignUp from "./pages/sign-in-sign-up/sign-in-sign-up";
 import CheckoutPage from "./pages/checkout/Checkout";
 // firebase
-import { auth } from "./firebase/FirebaseUtils";
-import { createUserProfileDocument } from "./firebase/FirebaseUtils";
+import {
+  auth,
+  createUserProfileDocument,
+  addCollectionAndDocuments
+} from "./firebase/FirebaseUtils";
 // redux
 import { connect } from "react-redux";
 import { setCurrentUser } from "./Redux/user/userActions";
 // reselect
 import { createStructuredSelector } from "reselect";
 import { selectCurrentUser } from "./Redux/user/userSelector";
+import { selectCollectionsForPreview } from "./Redux/shop/shopSelector";
 
-const App = ({ setCurrentUser, currentUser }) => {
+const App = ({ setCurrentUser, currentUser, collectionsArray }) => {
   useEffect(() => {
     // listen for auth state changes
     const unsubscribe = auth.onAuthStateChanged(async userAuth => {
@@ -30,6 +34,7 @@ const App = ({ setCurrentUser, currentUser }) => {
             ...snapshot.data()
           });
         });
+
       } else {
         setCurrentUser(userAuth);
       }
@@ -57,7 +62,8 @@ const App = ({ setCurrentUser, currentUser }) => {
 };
 
 const mapStateToProps = createStructuredSelector({
-  currentUser: selectCurrentUser
+  currentUser: selectCurrentUser,
+  collectionsArray: selectCollectionsForPreview
 });
 
 const mapDispatchToProps = dispatch => ({

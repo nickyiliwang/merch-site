@@ -20,6 +20,7 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
   const userRef = firestore.doc(`users/${userAuth.uid}`);
   // wait and get a snapshot of the user's profile
   const snapShot = await userRef.get();
+
   // if the snapshot doesn't exists
   if (!snapShot.exists) {
     const { displayName, email } = userAuth;
@@ -38,6 +39,7 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
   }
   return userRef;
 };
+
 
 firebase.initializeApp(config);
 

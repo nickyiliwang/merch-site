@@ -1,7 +1,7 @@
 // userEffect for Auth with firebase
 useEffect(() => {
   // listen for auth state changes
-  // unsubscribe function, invoke the auth state change method that calls a async function that awaits 
+  // unsubscribe function, invoke the auth state change method that calls a async function that awaits
   const unsubscribe = auth.onAuthStateChanged(async userAuth => {
     if (userAuth) {
       const userRef = await createUserProfileDocument(userAuth);
@@ -116,6 +116,64 @@ const CustomButton = ({
     {children}
   </button>
 );
+
+///////////////////////////////////////////////
+// collectionReference
+const getCollectionSnapshots = async () => {
+  // ref to users collection
+  const collectionRef = firestore.collection("users");
+  // snapshot of that reference
+  const collectionSnapshot = await collectionRef.get();
+  console.log(collectionSnapshot.docs.map(doc => doc.data()));
+};
+
+// you get these
+[
+  ({
+    createdAt: Timestamp,
+    displayName: "consoleLog",
+    email: "consolelog@gmail.com"
+  },
+  {
+    createdAt: Timestamp,
+    displayName: "hahajesus",
+    email: "jjjjaskdjaksd@gmail.com"
+  },
+  {
+    createdAt: Timestamp,
+    displayName: "Yili Wang",
+    email: "yw12me@student.ocadu.ca"
+  },
+  { createdAt: Timestamp, displayName: "nick", email: "nick@gmail.com" })
+];
+
+///////////////////////////////////////////////
+// batch add collections to firestore
+
+// in App.js and map an an new array that only has the title and items
+// collectionsArray is the shop_data
+
+addCollectionAndDocuments(
+  "collections",
+  collectionsArray.map((title, items) => ({ title, items }))
+);
+
+export const addCollectionAndDocuments = async (
+  collectionKey,
+  objectsToAdd
+) => {
+  const collectionRef = firestore.collection(collectionKey);
+  // batch write for consistency, the entire payload either fail together, or pass together, so we can anticipate the outcome. We can do so with firestore.batch() to do a multi-set.
+  const batch = firestore.batch();
+  objectsToAdd.forEach(obj => {
+    // create new empty doc ref to contain new objects with unique keys
+    const newDocRef = collectionRef.doc();
+    // you need to set the batch in order to commit the sets
+    batch.set(newDocRef, obj);
+  });
+
+  await batch.commit();
+};
 
 ///////////////////////////////////////////////
 // Asynchronous Redux
