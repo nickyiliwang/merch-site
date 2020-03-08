@@ -1,7 +1,13 @@
 import React from "react";
-import "./collection.scss";
 // components
 import CollectionItem from "../../components/collection-item/CollectionItem";
+// styled-components
+import {
+  CollectionPageStyles,
+  ItemsStyles,
+  TitleStyles
+} from "./CollectionPageStyle";
+
 // redux
 import { connect } from "react-redux";
 // reselect
@@ -10,14 +16,14 @@ import { selectCollection } from "../../Redux/shop/shopSelector";
 const CollectionPage = ({ collection }) => {
   const { title, items } = collection;
   return (
-    <div className="collection-page">
-      <h2 className="title">{title}</h2>
-      <div className="items">
+    <CollectionPageStyles>
+      <TitleStyles>{title}</TitleStyles>
+      <ItemsStyles>
         {items.map(item => (
           <CollectionItem key={item.id} item={item} />
         ))}
-      </div>
-    </div>
+      </ItemsStyles>
+    </CollectionPageStyles>
   );
 };
 

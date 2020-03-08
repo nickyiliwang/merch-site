@@ -1,3 +1,11 @@
+// development only logger
+
+const middleware = [];
+
+if (process.env.NODE_ENV === "development") {
+  middleware.push(logger);
+}
+
 // userEffect for Auth with firebase
 useEffect(() => {
   // listen for auth state changes
@@ -155,7 +163,9 @@ const getCollectionSnapshots = async () => {
 
 addCollectionAndDocuments(
   "collections",
-  collectionsArray.map((title, items) => ({ title, items }))
+  collectionsArray.map(({ title, items }) => {
+    return { title, items };
+  })
 );
 
 export const addCollectionAndDocuments = async (

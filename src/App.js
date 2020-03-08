@@ -5,15 +5,11 @@ import { Switch, Route, Redirect } from "react-router-dom";
 // pages/components
 import Header from "./components/header/Header";
 import HomePage from "./pages/homepage/HomePage";
-import ShopPage from "./pages/shop/shop";
+import ShopPage from "./pages/shop/ShopPage";
 import SignInSignUp from "./pages/sign-in-sign-up/sign-in-sign-up";
 import CheckoutPage from "./pages/checkout/Checkout";
 // firebase
-import {
-  auth,
-  createUserProfileDocument,
-  addCollectionAndDocuments
-} from "./firebase/FirebaseUtils";
+import { auth, createUserProfileDocument } from "./firebase/FirebaseUtils";
 // redux
 import { connect } from "react-redux";
 import { setCurrentUser } from "./Redux/user/userActions";

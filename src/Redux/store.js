@@ -1,17 +1,18 @@
 import { createStore, applyMiddleware } from "redux";
 import rootReducer from "./rootReducer";
-// redux code debugger
-import logger from "redux-logger";
+// redux dev-tools
+import { composeWithDevTools } from "redux-devtools-extension";
 // redux persist
 import { persistStore } from "redux-persist";
 
-const middleware = []; // doing this applyMiddleware can take however many things.
+const middleware = [];
 
-if (process.env.NODE_ENV === "development") {
-  middleware.push(logger);
-}
+// ensure it's only enabled for production
+const devTools =
+  process.env.NODE_ENV === "production"
+    ? applyMiddleware(...middleware)
+    : composeWithDevTools(applyMiddleware(...middleware));
 
-// exporting the store for persist to wrap it
-export const store = createStore(rootReducer, applyMiddleware(...middleware));
+export const store = createStore(rootReducer, devTools);
 
 export const persistor = persistStore(store);
