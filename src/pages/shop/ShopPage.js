@@ -13,22 +13,48 @@ import {
   convertCollectionsSnapshotToMap
 } from "../../firebase/FirebaseUtils";
 
-const ShopPage = ({ match, updateCollections }) => {
-  useEffect(() => {
+class ShopPage extends React.Component {
+  unsub = null;
+
+  componentDidMount() {
     const collectionRef = firestore.collection("collections");
-    collectionRef.onSnapshot(async snapshot => {
-      const collectionsMap = convertCollectionsSnapshotToMap(snapshot);
+    const { updateCollections } = this.props;
+    this.unsub = collectionRef.onSnapshot(async snapshot => {
+      const collectionsMap = await convertCollectionsSnapshotToMap(snapshot);
       updateCollections(collectionsMap);
     });
-  }, []);
+  }
 
-  return (
-    <div className="shop-page">
-      <Route exact path={`${match.path}`} component={CollectionsOverview} />
-      <Route path={`${match.path}/:collectionId`} component={CollectionPage} />
-    </div>
-  );
-};
+  render() {
+    const { match } = this.props;
+    return (
+      <div className="shop-page">
+        <Route exact path={`${match.path}`} component={CollectionsOverview} />
+        <Route
+          path={`${match.path}/:collectionId`}
+          component={CollectionPage}
+        />
+      </div>
+    );
+  }
+}
+
+// const ShopPage = ({ match, updateCollections }) => {
+//   useEffect(() => {
+//     const collectionRef = firestore.collection("collections");
+//     collectionRef.onSnapshot(snapshot => {
+//       const collectionsMap = convertCollectionsSnapshotToMap(snapshot);
+//       updateCollections(collectionsMap);
+//     });
+//   }, []);
+
+//   return (
+//     <div className="shop-page">
+//       <Route exact path={`${match.path}`} component={CollectionsOverview} />
+//       <Route path={`${match.path}/:collectionId`} component={CollectionPage} />
+//     </div>
+//   );
+// };
 
 const mapDispatchToProps = dispatch => ({
   updateCollections: collectionsMap =>

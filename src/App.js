@@ -18,7 +18,7 @@ import { createStructuredSelector } from "reselect";
 import { selectCurrentUser } from "./Redux/user/userSelector";
 import { selectCollectionsForPreview } from "./Redux/shop/shopSelector";
 
-const App = ({ setCurrentUser, currentUser, collectionsArray }) => {
+const App = ({ setCurrentUser, currentUser }) => {
   useEffect(() => {
     // listen for auth state changes
     const unsubscribe = auth.onAuthStateChanged(async userAuth => {
