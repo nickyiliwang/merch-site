@@ -2,6 +2,9 @@ import React, { useEffect } from "react";
 // components
 import CollectionsOverview from "../../components/collections-overview/CollectionOverview";
 import CollectionPage from "../collection/CollectionPage";
+// redux
+import { connect } from "react-redux";
+import { updateCollections } from "../../Redux/shop/shopActions";
 // router
 import { Route } from "react-router-dom";
 // firebase
@@ -10,11 +13,12 @@ import {
   convertCollectionsSnapshotToMap
 } from "../../firebase/FirebaseUtils";
 
-const ShopPage = ({ match }) => {
+const ShopPage = ({ match, updateCollections }) => {
   useEffect(() => {
     const collectionRef = firestore.collection("collections");
     collectionRef.onSnapshot(async snapshot => {
-      convertCollectionsSnapshotToMap(snapshot);
+      const collectionsMap = convertCollectionsSnapshotToMap(snapshot);
+      updateCollections(collectionsMap);
     });
   }, []);
 
@@ -26,4 +30,9 @@ const ShopPage = ({ match }) => {
   );
 };
 
-export default ShopPage;
+const mapDispatchToProps = dispatch => ({
+  updateCollections: collectionsMap =>
+    dispatch(updateCollections(collectionsMap))
+});
+
+export default connect(null, mapDispatchToProps)(ShopPage);
