@@ -135,7 +135,7 @@ const getCollectionSnapshots = async () => {
   const collectionRef = firestore.collection("users");
   // snapshot of that reference
   const collectionSnapshot = await collectionRef.get();
-  console.log(collectionSnapshot.docs.map(doc => doc.data()));
+  return collectionSnapshot.docs.map(doc => doc.data());
 };
 
 // you get these
