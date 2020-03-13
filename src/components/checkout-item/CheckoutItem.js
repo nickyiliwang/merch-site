@@ -1,5 +1,6 @@
 import React from "react";
-import "./checkout-item.scss";
+// styled-component
+import { CheckoutItemStyles, QuantitySpan } from "./CheckOutStyles";
 // redux
 import { connect } from "react-redux";
 import {
@@ -12,12 +13,12 @@ const CheckoutItem = ({ cartItem, clearItem, addItem, removeItem }) => {
   const { name, imageUrl, price, quantity } = cartItem;
 
   return (
-    <div className="checkout-item">
+    <CheckoutItemStyles>
       <div className="image-container">
         <img src={imageUrl} alt="item" />
       </div>
       <span className="name">{name}</span>
-      <span className="quantity">
+      <QuantitySpan>
         <div className="arrow" onClick={() => removeItem(cartItem)}>
           &#10094;
         </div>
@@ -25,15 +26,14 @@ const CheckoutItem = ({ cartItem, clearItem, addItem, removeItem }) => {
         <div className="arrow" onClick={() => addItem(cartItem)}>
           &#10095;
         </div>
-      </span>
+      </QuantitySpan>
       <span className="price">{price}</span>
       <span className="remove-button" onClick={() => clearItem(cartItem)}>
         &#10005;
       </span>
-    </div>
+    </CheckoutItemStyles>
   );
 };
-
 
 const mapDispatchToProps = dispatch => ({
   clearItem: item => dispatch(clearItemFromCart(item)),
