@@ -1,5 +1,4 @@
 import React from "react";
-import "./checkout.scss";
 // components
 import CheckoutItem from "../../components/checkout-item/CheckoutItem";
 import StripeCheckoutButton from "../../components/stripe-button/StripeButton";
