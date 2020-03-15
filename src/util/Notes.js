@@ -229,3 +229,29 @@ export const fetchCollectionsStartAsync = () => dispatch => {
     updateCollections(collectionsMap);
   });
 };
+
+///////////////////////////////////////////////
+// turning any values into truthy or falsy values
+// from this
+export const selectIsCollectionsLoaded = createSelector([selectShop], shop =>
+  shop.collections ? true : false
+);
+// into this with !!
+export const selectIsCollectionsLoaded = createSelector(
+  [selectShop],
+  shop => !!shop.collections
+);
+// this is just an shorthand
+
+///////////////////////////////////////////////
+// debugging shop/:collectionId route refresh:
+// Cannot read property 'title' of null
+
+// when we do any api calls in useEffect/componentDidMount, the render method has already rendered, and the CollectionPage has already begun rendering. But the problem is our store's collection state is still "null". Our app is broken before the next action was even fired.
+
+// hence we wrote a new selector for this issue
+export const selectIsCollectionsLoaded = createSelector(
+  [selectShop],
+  shop => !!shop.collections
+);
+// this checks if the collection is null or not
