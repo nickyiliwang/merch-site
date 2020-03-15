@@ -1,9 +1,14 @@
 import React from "react";
-import "./collection-preview.scss";
 // router
 import { useHistory } from "react-router-dom";
 // components
 import CollectionItem from "../collection-item/CollectionItem";
+// styled-components
+import {
+  CollectionPreviewStyles,
+  PreviewStyles,
+  TitleStyles
+} from "./CollectionPreviewStyles";
 
 export const CollectionPreview = ({ title, items }) => {
   let history = useHistory();
@@ -14,17 +19,15 @@ export const CollectionPreview = ({ title, items }) => {
   };
 
   return (
-    <div className="collection-preview">
-      <h2 className="title" onClick={handleOnClick}>
-        {title.toUpperCase()}
-      </h2>
-      <div className="preview">
+    <CollectionPreviewStyles>
+      <TitleStyles onClick={handleOnClick}>{title.toUpperCase()}</TitleStyles>
+      <PreviewStyles>
         {items
           .filter((item, i) => i < 4) // limit it to 4 items
           .map(item => {
             return <CollectionItem key={item.id} item={item} />;
           })}
-      </div>
-    </div>
+      </PreviewStyles>
+    </CollectionPreviewStyles>
   );
 };

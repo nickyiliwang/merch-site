@@ -1,5 +1,4 @@
 import React from "react";
-import "./collection-item.scss";
 // redux
 import { connect } from "react-redux";
 import { addItem } from "../../Redux/cart/cartActions";
