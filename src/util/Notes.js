@@ -199,4 +199,33 @@ transformedCollection.reduce((accumulator, collection) => {
 }, {});
 
 ///////////////////////////////////////////////
+// fetch call without redux
+const ShopPage = ({ updateCollections }) => {
+  useEffect(() => {
+    const collectionRef = firestore.collection("collections");
+    collectionRef.onSnapshot(snapshot => {
+      const collectionsMap = convertCollectionsSnapshotToMap(snapshot);
+      updateCollections(collectionsMap);
+      setLoading(false);
+    });
+  }, [updateCollections]);
+};
+
+const mapDispatchToProps = dispatch => ({
+  updateCollections: collectionsMap =>
+    dispatch(updateCollections(collectionsMap))
+});
+
+///////////////////////////////////////////////
 // Asynchronous Redux
+// using thunk, we can do this syntax
+// dispatching redux actions
+// we can return functions within our xxxAction functions and dispatch multiple actions within that function. Like handling async fetch calls.
+export const fetchCollectionsStartAsync = () => dispatch => {
+  const collectionRef = firestore.collection("collections");
+
+  collectionRef.get().then(snapshot => {
+    const collectionsMap = converCollectionsSnapshotToMap(snapshot);
+    updateCollections(collectionsMap);
+  });
+};

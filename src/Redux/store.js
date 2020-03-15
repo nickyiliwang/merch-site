@@ -4,8 +4,10 @@ import rootReducer from "./rootReducer";
 import { composeWithDevTools } from "redux-devtools-extension";
 // redux persist
 import { persistStore } from "redux-persist";
+// redux thunk
+import thunk from "redux-thunk";
 
-const middleware = [];
+const middleware = [thunk];
 
 // ensure it's only enabled for production
 const devTools =

@@ -7,7 +7,6 @@ import {
   ItemsStyles,
   TitleStyles
 } from "./CollectionPageStyle";
-
 // redux
 import { connect } from "react-redux";
 // reselect

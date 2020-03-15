@@ -1,5 +1,4 @@
 import React from "react";
-import "./collections-overview.scss";
 // components
 import { CollectionPreview } from "../collection-preview/CollectionPreview";
 // styled-components
