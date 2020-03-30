@@ -1,4 +1,6 @@
-.sign-in {
+import styled from "styled-components";
+
+export const SignInStyles = styled.div`
   width: 380px;
   display: flex;
   flex-direction: column;
@@ -11,4 +13,4 @@
     display: flex;
     justify-content: space-between;
   }
-}
+`;

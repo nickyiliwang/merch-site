@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import FormInput from "../form-input/FormInput";
 import CustomButton from "../custom-button/CustomButton";
 import { auth, signInWithGoogle } from "../../firebase/FirebaseUtils";
-import "./Sign-in.scss";
+import { SignInStyles } from "./SignInStyles";
 
-const Signin = () => {
+const SignIn = () => {
   const [emailPassWord, setEmailPassWord] = useState({
     email: "",
     password: ""
@@ -28,7 +28,7 @@ const Signin = () => {
   };
 
   return (
-    <div className="sign-in">
+    <SignInStyles>
       <h2>I already have an account</h2>
       <span>Sign in with your email and password</span>
 
@@ -56,8 +56,8 @@ const Signin = () => {
           </CustomButton>
         </div>
       </form>
-    </div>
+    </SignInStyles>
   );
 };
 
-export default Signin;
+export default SignIn;

@@ -1,0 +1,17 @@
+Redesigning the merch site so it looks like riot games main site, with good navigation, good layout, and good UI, think of this site as my
+
+Change it so much so I can say I made this site without feeling like shit, 
+
+## change enough so I can start having fun with it.
+
+step 1. having the assets needed.
+
+step 2 keeping the object shape
+
+step 3 upload to firebase
+
+step 4 change the front page a lot, forget other parts for now
+
+step 5 make cross platform
+
+step 6 make user login actually mean something
