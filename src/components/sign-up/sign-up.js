@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "./sign-up.scss";
 import { SignupStyles } from "./SignupStyles";
 
 // components

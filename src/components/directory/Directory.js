@@ -1,5 +1,5 @@
 import React from "react";
-import "./directory.scss";
+import { DirectoryMenuStyles } from "./DirectoryStyles";
 // components
 import MenuItem from "../menu-item/MenuItem";
 // redux
@@ -10,11 +10,11 @@ import { selectDirectorySections } from "../../Redux/directory/directorySelector
 
 const Directory = ({ sections }) => {
   return (
-    <div className="directory-menu">
+    <DirectoryMenuStyles>
       {sections.map(({ id, ...otherSectionProps }) => (
         <MenuItem key={id} {...otherSectionProps} />
       ))}
-    </div>
+    </DirectoryMenuStyles>
   );
 };
 
