@@ -8,7 +8,7 @@ import {
   LogoStyles,
   OptionsStyles,
   OptionLinkStyles,
-  OptionDivStyles
+  OptionDivStyles,
 } from "./HeaderStyles";
 // logo
 import { ReactComponent as Logo } from "../../assets/crown.svg";
@@ -28,7 +28,6 @@ const Header = ({ currentUser, hidden }) => (
     </LogoStyles>
     <OptionsStyles>
       <OptionLinkStyles to="/shop">SHOP</OptionLinkStyles>
-      <OptionLinkStyles to="/shop">CONTACT</OptionLinkStyles>
       {currentUser ? (
         <OptionDivStyles onClick={() => auth.signOut()}>
           Sign Out
@@ -45,7 +44,7 @@ const Header = ({ currentUser, hidden }) => (
 // createStructuredSelector
 const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser,
-  hidden: selectCartHidden
+  hidden: selectCartHidden,
 });
 
 export default connect(mapStateToProps)(Header);

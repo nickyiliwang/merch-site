@@ -1,12 +1,12 @@
 import React from "react";
 // styled-component
-import { CheckoutItemStyles, QuantitySpan } from "./CheckOutStyles";
+import { CheckoutItemStyles, QuantitySpan } from "./CheckOutItemStyles";
 // redux
 import { connect } from "react-redux";
 import {
   clearItemFromCart,
   addItem,
-  removeItem
+  removeItem,
 } from "../../Redux/cart/cartActions";
 
 const CheckoutItem = ({ cartItem, clearItem, addItem, removeItem }) => {
@@ -35,10 +35,10 @@ const CheckoutItem = ({ cartItem, clearItem, addItem, removeItem }) => {
   );
 };
 
-const mapDispatchToProps = dispatch => ({
-  clearItem: item => dispatch(clearItemFromCart(item)),
-  removeItem: item => dispatch(removeItem(item)),
-  addItem: item => dispatch(addItem(item))
+const mapDispatchToProps = (dispatch) => ({
+  clearItem: (item) => dispatch(clearItemFromCart(item)),
+  removeItem: (item) => dispatch(removeItem(item)),
+  addItem: (item) => dispatch(addItem(item)),
 });
 
 export default connect(null, mapDispatchToProps)(CheckoutItem);
