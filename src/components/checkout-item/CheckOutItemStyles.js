@@ -9,7 +9,7 @@ export const CheckoutItemStyles = styled.div`
   font-size: 20px;
   align-items: center;
 
-  &.image-container {
+  .image-container {
     width: 23%;
     padding-right: 15px;
 
@@ -33,6 +33,7 @@ export const CheckoutItemStyles = styled.div`
 
 export const QuantitySpan = styled.span`
   display: flex;
+  width: 23%;
 
   .arrow {
     cursor: pointer;
